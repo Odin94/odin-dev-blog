@@ -61,7 +61,7 @@ const menuItems = [
     },
     {
         title: "Impressum",
-        url: "#",
+        url: "/impressum",
         icon: Settings,
         target: "self",
     },
