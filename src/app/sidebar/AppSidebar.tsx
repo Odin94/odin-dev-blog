@@ -1,4 +1,4 @@
-import { Calendar, Coffee, Home, Inbox, Search, Settings } from "lucide-react"
+import { Coffee, Home, Search, Settings } from "lucide-react"
 import Image from "next/image"
 
 import { Button } from "@/components/ui/button"
@@ -20,26 +20,50 @@ const menuItems = [
         title: "Home",
         url: "/",
         icon: Home,
+        target: "_blankself",
     },
     {
         title: "VtM - Progeny",
         url: "https://progeny.odin-matthias.de",
-        icon: Inbox,
+        icon: () => {
+            return (
+                <Image
+                    src={"/ankh.svg"}
+                    alt={"heart icon"}
+                    width={16}
+                    height={16}
+                    className="brightness-0 invert"
+                />
+            )
+        },
     },
     {
         title: "Heart - Heartsong",
         url: "https://heartsong.odin-matthias.de",
-        icon: Calendar,
+        icon: () => {
+            return (
+                <Image
+                    src={"/heart-illustration-1-svgrepo-com.svg"}
+                    alt={"heart icon"}
+                    width={16}
+                    height={16}
+                    className="brightness-0 invert"
+                />
+            )
+        },
+        target: "_blank",
     },
     {
         title: "Search",
         url: "#",
         icon: Search,
+        target: "self",
     },
     {
         title: "Impressum",
         url: "#",
         icon: Settings,
+        target: "self",
     },
 ]
 
@@ -72,7 +96,7 @@ export function AppSidebar() {
                                         asChild
                                         className="hover:bg-color-red-900 text-white transition-colors duration-500 hover:text-cyan-200"
                                     >
-                                        <a href={item.url} target="_blank">
+                                        <a href={item.url} target={item.target}>
                                             <item.icon />
                                             <span>{item.title}</span>
                                         </a>
