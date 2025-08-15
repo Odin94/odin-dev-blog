@@ -1,4 +1,3 @@
-import { SidebarProvider } from "@/components/ui/sidebar"
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
@@ -29,21 +28,23 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen antialiased`}
             >
-                <SidebarProvider>
-                    <AppSidebar />
-                    <main
+                <div className="grid min-h-screen w-full grid-cols-[22rem_8rem_1fr]">
+                    {/* Sidebar column */}
+                    <div className="bg-red-900 text-white">
+                        <AppSidebar />
+                    </div>
+                    {/* Wave column */}
+                    <div
                         style={{
-                            minHeight: "100vh",
-                            width: "100%",
                             backgroundImage: "url('/wave-haikei.svg')",
                             backgroundRepeat: "no-repeat",
                             backgroundSize: "auto 100%",
                             backgroundPosition: "left center",
                         }}
-                    >
-                        {children}
-                    </main>
-                </SidebarProvider>
+                    />
+                    {/* Main content column */}
+                    <main className="w-full bg-gray-50">{children}</main>
+                </div>
             </body>
         </html>
     )
