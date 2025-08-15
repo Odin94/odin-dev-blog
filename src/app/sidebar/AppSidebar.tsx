@@ -114,7 +114,7 @@ export function AppSidebar() {
             <SidebarFooter className="flex flex-col items-center">
                 <Button
                     asChild
-                    className="border-white/40 bg-white/10 text-white/90 transition-colors hover:border-white hover:bg-white/10 hover:text-white"
+                    className="animated-border border-white/40 bg-white/10 text-white/90 transition-colors hover:border-white hover:bg-white/10 hover:text-white"
                     variant={"outline"}
                 >
                     <a href="https://ko-fi.com/odin_dev" target="_blank">

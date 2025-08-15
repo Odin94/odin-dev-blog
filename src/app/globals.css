@@ -122,3 +122,104 @@
         background-color: rgb(255, 250, 250);
     }
 }
+
+/* Animated border for Ko-fi button */
+@keyframes borderRotate {
+    0% {
+        border-image: linear-gradient(
+                0deg,
+                #dc2626,
+                #ef4444,
+                #f87171,
+                #fca5a5,
+                #fecaca,
+                #dc2626
+            )
+            1;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+    }
+    16.66% {
+        border-image: linear-gradient(
+                60deg,
+                #ef4444,
+                #f87171,
+                #fca5a5,
+                #fecaca,
+                #dc2626,
+                #ef4444
+            )
+            1;
+        box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+    }
+    33.33% {
+        border-image: linear-gradient(
+                120deg,
+                #f87171,
+                #fca5a5,
+                #fecaca,
+                #dc2626,
+                #ef4444,
+                #f87171
+            )
+            1;
+        box-shadow: 0 0 10px rgba(248, 113, 113, 0.6);
+    }
+    50% {
+        border-image: linear-gradient(
+                180deg,
+                #fca5a5,
+                #fecaca,
+                #dc2626,
+                #ef4444,
+                #f87171,
+                #fca5a5
+            )
+            1;
+        box-shadow: 0 0 10px rgba(252, 165, 165, 0.6);
+    }
+    66.66% {
+        border-image: linear-gradient(
+                240deg,
+                #fecaca,
+                #dc2626,
+                #ef4444,
+                #f87171,
+                #fca5a5,
+                #fecaca
+            )
+            1;
+        box-shadow: 0 0 10px rgba(254, 202, 202, 0.6);
+    }
+    83.33% {
+        border-image: linear-gradient(
+                300deg,
+                #dc2626,
+                #ef4444,
+                #f87171,
+                #fca5a5,
+                #fecaca,
+                #dc2626
+            )
+            1;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+    }
+    100% {
+        border-image: linear-gradient(
+                360deg,
+                #dc2626,
+                #ef4444,
+                #f87171,
+                #fca5a5,
+                #fecaca,
+                #dc2626
+            )
+            1;
+        box-shadow: 0 0 10px rgba(220, 38, 38, 0.6);
+    }
+}
+
+.animated-border {
+    animation: borderRotate 4s linear infinite;
+    border-width: 3px;
+    border-style: solid;
+}
