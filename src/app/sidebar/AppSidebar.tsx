@@ -1,3 +1,4 @@
+import { SocialMedia } from "@/components/SocialMedia"
 import { Coffee, Home, Search, Settings } from "lucide-react"
 import Image from "next/image"
 
@@ -24,8 +25,8 @@ const menuItems = [
         },
     },
     {
-        title: "Heart - Heartsong",
-        url: "https://heartsong.odin-matthias.de",
+        title: "Heart - Hiveborn",
+        url: "https://hiveborn.odin-matthias.de",
         icon: () => {
             return (
                 <Image
@@ -40,7 +41,7 @@ const menuItems = [
         target: "_blank",
     },
     {
-        title: "Brindlewood Bay - CozyCrowns",
+        title: "Brindlewood - CozyCrowns",
         url: "https://cozycrowns.odin-matthias.de",
         icon: () => {
             return (
@@ -87,19 +88,24 @@ export function AppSidebar() {
             </div>
 
             {/* Menu */}
-            <nav className="mt-20 flex-1 space-y-4">
+            <nav className="mt-20 flex-1 space-y-0">
                 {menuItems.map((item) => (
                     <div key={item.title}>
                         <a
                             href={item.url}
                             target={item.target}
-                            className="flex items-center gap-3 rounded-md px-6 py-4 text-lg text-white transition-colors duration-500 hover:bg-red-800 hover:text-cyan-200"
+                            className="flex items-center gap-3 rounded-md px-4 py-2 text-lg text-white transition-colors duration-500 hover:bg-red-800 hover:text-cyan-200"
                         >
                             <item.icon />
                             <span>{item.title}</span>
                         </a>
                     </div>
                 ))}
+            </nav>
+
+            <nav className="flex-1 items-center space-y-5">
+                <h2 className="text-xl text-white italic">Get in touch!</h2>
+                <SocialMedia />
             </nav>
 
             {/* Footer */}

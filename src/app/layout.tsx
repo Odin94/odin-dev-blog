@@ -43,7 +43,7 @@ export default function RootLayout({
                         }}
                     />
                     {/* Main content column */}
-                    <main className="w-full bg-gray-50">{children}</main>
+                    <main className="bg-snow w-full">{children}</main>
                 </div>
             </body>
         </html>
