@@ -1,5 +1,5 @@
 import { SocialMedia } from "@/components/SocialMedia"
-import { Coffee, Home, Search, Settings } from "lucide-react"
+import { Coffee, Home, Settings } from "lucide-react"
 import Image from "next/image"
 
 const menuItems = [
@@ -7,7 +7,7 @@ const menuItems = [
         title: "Home",
         url: "/",
         icon: Home,
-        target: "_blankself",
+        target: "self",
     },
     {
         title: "VtM - Progeny",
@@ -55,12 +55,6 @@ const menuItems = [
             )
         },
         target: "_blank",
-    },
-    {
-        title: "Search",
-        url: "#",
-        icon: Search,
-        target: "self",
     },
     {
         title: "Impressum",
