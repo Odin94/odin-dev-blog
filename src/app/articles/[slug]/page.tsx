@@ -2,9 +2,8 @@ import { promises as fs } from "fs"
 import path from "path"
 import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
-import Image from "next/image"
-import slugToFolderMap from "@/lib/article-mapping.json"
 import { getValidArticleFolders } from "@/lib/utils"
+import { createMarkdownComponents } from "@/components/MarkdownComponents"
 
 interface ArticleData {
     title: string
@@ -103,52 +102,6 @@ async function getArticleData(slug: string): Promise<ArticleData | null> {
     }
 }
 
-// Custom image component to handle relative paths
-function CustomImage({
-    src,
-    alt,
-    articleSlug,
-    ...props
-}: {
-    src: string
-    alt: string
-    articleSlug: string
-    [key: string]: unknown
-}) {
-    if (
-        src.startsWith("http://") ||
-        src.startsWith("https://") ||
-        src.startsWith("/")
-    ) {
-        return (
-            <Image
-                src={src}
-                alt={alt}
-                width={800}
-                height={600}
-                className="h-auto w-full"
-                {...props}
-            />
-        )
-    }
-
-    const folderName =
-        slugToFolderMap[articleSlug as keyof typeof slugToFolderMap] ||
-        articleSlug
-    const imagePath = `/articles/${folderName}/${src}`
-
-    return (
-        <Image
-            src={imagePath}
-            alt={alt}
-            width={800}
-            height={600}
-            className="h-auto w-full"
-            {...props}
-        />
-    )
-}
-
 export default async function ArticlePage({ params }: ArticlePageProps) {
     const resolvedParams = await params
     const article = await getArticleData(resolvedParams.slug)
@@ -206,18 +159,9 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 )}
             </header>
 
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-xl max-w-none text-lg leading-relaxed">
                 <ReactMarkdown
-                    components={{
-                        img: ({ src, alt, ...props }) => (
-                            <CustomImage
-                                src={typeof src === "string" ? src : ""}
-                                alt={typeof alt === "string" ? alt : ""}
-                                articleSlug={resolvedParams.slug}
-                                {...props}
-                            />
-                        ),
-                    }}
+                    components={createMarkdownComponents(resolvedParams.slug)}
                 >
                     {article.content}
                 </ReactMarkdown>
