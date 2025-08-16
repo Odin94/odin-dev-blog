@@ -74,9 +74,6 @@ export default async function Home() {
                 <h1 className="mb-4 text-4xl font-bold text-gray-900">
                     Latest Articles
                 </h1>
-                <p className="text-lg text-gray-600">
-                    Recent thoughts and projects from my development journey.
-                </p>
             </div>
 
             {articles.map((article) => (
@@ -85,28 +82,12 @@ export default async function Home() {
                     href={`/articles/${article.slug}`}
                     className="group w-full max-w-md"
                 >
-                    <div className="relative aspect-[3/2] w-full overflow-hidden rounded-lg bg-gray-200 shadow-lg transition-transform duration-300 group-hover:scale-105">
-                        {article.socialImage &&
-                        article.socialImage !== "no.jpg" ? (
-                            <img
-                                src={article.socialImage}
-                                alt={article.title}
-                                className="h-full w-full object-cover"
-                            />
-                        ) : (
-                            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-500 to-purple-600">
-                                <div className="text-center text-white">
-                                    <h3 className="text-2xl font-bold">
-                                        {article.title}
-                                    </h3>
-                                    <p className="mt-2 text-sm opacity-90">
-                                        {article.category}
-                                    </p>
-                                </div>
-                            </div>
-                        )}
+                    <div className="relative aspect-[5/2] w-full overflow-hidden rounded-lg bg-gray-200 shadow-lg transition-transform duration-300 group-hover:scale-105">
+                        <div className="flex h-full w-full items-center justify-center bg-radial from-red-500 to-red-800">
+                            <div className="text-center text-white"></div>
+                        </div>
                         <div className="absolute inset-0 flex flex-col justify-end bg-black/40 p-4 text-white">
-                            <h2 className="text-xl font-bold transition-colors group-hover:text-blue-200">
+                            <h2 className="text-xl font-bold transition-colors group-hover:text-red-200">
                                 {article.title}
                             </h2>
                             <p className="text-sm opacity-90">

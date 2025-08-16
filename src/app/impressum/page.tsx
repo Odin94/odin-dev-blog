@@ -22,7 +22,7 @@ const Impressum = () => {
                 Verantwortlicher für den Inhalt ist gemäß § 55 Abs. 2
                 Rundfunkstaatsvertrag (RStV):
             </p>
-            <p>
+            <div>
                 Odin Kammerloher
                 <br />
                 <h3 className="my-2 text-lg font-bold">
@@ -46,7 +46,7 @@ const Impressum = () => {
                 Kenntniserlangung einer konkreten Rechtsverletzung möglich. Bei
                 Bekanntwerden von den o.g. Rechtsverletzungen werden wir diese
                 Inhalte unverzüglich entfernen.
-            </p>
+            </div>
 
             <h4 className="my-2 font-bold">
                 Haftungsbeschränkung für externe Links
