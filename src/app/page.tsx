@@ -86,14 +86,16 @@ export default async function Home() {
                         <div className="flex h-full w-full items-center justify-center bg-radial from-red-500 to-red-800">
                             <div className="text-center text-white"></div>
                         </div>
-                        <div className="absolute inset-0 flex flex-col justify-end bg-black/40 p-4 text-white">
-                            <h2 className="text-xl font-bold transition-colors group-hover:text-red-200">
-                                {article.title}
-                            </h2>
-                            <p className="text-sm opacity-90">
-                                {article.description || article.category}
-                            </p>
-                            <div className="mt-2 flex items-center text-xs opacity-75">
+                        <div className="absolute inset-0 flex flex-col justify-between bg-black/40 p-4 text-white">
+                            <div>
+                                <h2 className="text-4xl font-bold transition-colors group-hover:text-red-200">
+                                    {article.title}
+                                </h2>
+                                <p className="mt-2 text-xl opacity-90">
+                                    {article.description || article.category}
+                                </p>
+                            </div>
+                            <div className="flex items-center text-xs opacity-75">
                                 <time dateTime={article.date}>
                                     {new Date(article.date).toLocaleDateString(
                                         "en-US",

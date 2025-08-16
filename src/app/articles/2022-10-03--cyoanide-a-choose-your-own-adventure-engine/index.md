@@ -1,5 +1,5 @@
 ---
-title: "Cyoanide: A choose your own adventure engine"
+title: "Cyoanide"
 draft: false
 date: "2022-10-03T16:00:32.169Z"
 template: "post"
@@ -10,7 +10,7 @@ tags:
   - "Game Development"
   - "Project"
   - "Web Development"
-description: "I built an open source Choose Your Own Adventure “engine” called Cyoanide with Gatsby. This is its story."
+description: "A choose your own adventure engine"
 ---
 
 I built an open source Choose Your Own Adventure "engine" called Cyoanide with Gatsby. This is its story.
