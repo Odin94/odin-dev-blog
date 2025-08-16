@@ -1,13 +1,13 @@
 import { SocialMedia } from "@/components/SocialMedia"
 import { Coffee, Home, Settings } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 const menuItems = [
     {
         title: "Home",
         url: "/",
         icon: Home,
-        target: "self",
     },
     {
         title: "VtM - Progeny",
@@ -23,6 +23,7 @@ const menuItems = [
                 />
             )
         },
+        target: "_blank",
     },
     {
         title: "Heart - Hiveborn",
@@ -60,7 +61,6 @@ const menuItems = [
         title: "Impressum",
         url: "/impressum",
         icon: Settings,
-        target: "self",
     },
 ]
 
@@ -85,14 +85,14 @@ export function AppSidebar() {
             <nav className="mt-20 flex-1 space-y-0">
                 {menuItems.map((item) => (
                     <div key={item.title}>
-                        <a
+                        <Link
                             href={item.url}
-                            target={item.target}
+                            {...(item.target && { target: item.target })}
                             className="flex items-center gap-3 rounded-md px-4 py-2 text-lg text-white transition-colors duration-500 hover:bg-red-800 hover:text-cyan-200"
                         >
                             <item.icon />
                             <span>{item.title}</span>
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </nav>
