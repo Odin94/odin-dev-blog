@@ -66,7 +66,7 @@ const menuItems = [
 
 export function AppSidebar() {
     return (
-        <div className="flex h-full flex-col p-6">
+        <div className="flex h-screen flex-col p-6">
             {/* Header */}
             <div className="flex flex-col items-center">
                 <Image

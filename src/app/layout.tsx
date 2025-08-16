@@ -31,13 +31,14 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen antialiased`}
             >
-                <div className="grid min-h-screen w-full grid-cols-[22rem_8rem_1fr]">
+                <div className="min-h-screen w-full">
                     {/* Sidebar column */}
-                    <div className="bg-red-900 text-white">
+                    <div className="fixed top-0 left-0 h-screen w-88 bg-red-900 text-white">
                         <AppSidebar />
                     </div>
                     {/* Wave column */}
                     <div
+                        className="fixed top-0 left-88 h-screen w-32"
                         style={{
                             backgroundImage: "url('/wave-haikei.svg')",
                             backgroundRepeat: "no-repeat",
@@ -46,7 +47,9 @@ export default function RootLayout({
                         }}
                     />
                     {/* Main content column */}
-                    <main className="bg-snow w-full">{children}</main>
+                    <main className="bg-snow ml-120 min-h-screen w-[calc(100%-30rem)]">
+                        {children}
+                    </main>
                 </div>
             </body>
         </html>
