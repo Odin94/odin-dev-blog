@@ -109,7 +109,7 @@ export default async function ArticlesPage() {
                             </span>
                         </div>
 
-                        {article.tags.length > 0 && (
+                        {article.tags.length > 0 ? (
                             <div className="mb-3 flex flex-wrap gap-2">
                                 {article.tags.map((tag) => (
                                     <span
@@ -120,13 +120,13 @@ export default async function ArticlesPage() {
                                     </span>
                                 ))}
                             </div>
-                        )}
+                        ) : null}
 
-                        {article.description && (
+                        {article.description ? (
                             <p className="mb-4 text-gray-600">
                                 {article.description}
                             </p>
-                        )}
+                        ) : null}
 
                         <Link
                             href={`/articles/${article.slug}`}
@@ -138,11 +138,11 @@ export default async function ArticlesPage() {
                 ))}
             </div>
 
-            {articles.length === 0 && (
+            {articles.length === 0 ? (
                 <div className="py-12 text-center">
                     <p className="text-gray-600">No articles found.</p>
                 </div>
-            )}
+            ) : null}
         </div>
     )
 }

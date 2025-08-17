@@ -72,7 +72,7 @@ export default async function Home() {
                     href={`/articles/${article.slug}`}
                     className="group w-full max-w-md"
                 >
-                    <div className="relative aspect-[5/2] w-full overflow-hidden rounded-lg bg-gray-200 shadow-lg transition-transform duration-300 group-hover:scale-105">
+                    <div className="relative h-55 w-full overflow-hidden rounded-lg bg-gray-200 shadow-lg transition-transform duration-300 group-hover:scale-105">
                         <div className="flex h-full w-full items-center justify-center bg-radial from-red-500 to-red-800">
                             <div className="text-center text-white"></div>
                         </div>
@@ -106,11 +106,11 @@ export default async function Home() {
                 </Link>
             ))}
 
-            {articles.length === 0 && (
+            {articles.length === 0 ? (
                 <div className="py-12 text-center">
                     <p className="text-gray-600">No articles found.</p>
                 </div>
-            )}
+            ) : null}
         </div>
     )
 }

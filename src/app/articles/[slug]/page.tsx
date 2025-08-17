@@ -129,7 +129,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                         {article.category}
                     </span>
                 </div>
-                {article.tags.length > 0 && (
+                {article.tags.length > 0 ? (
                     <div className="mb-4 flex flex-wrap gap-2">
                         {article.tags.map((tag) => (
                             <span
@@ -140,12 +140,12 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                             </span>
                         ))}
                     </div>
-                )}
-                {article.description && (
+                ) : null}
+                {article.description ? (
                     <p className="text-lg text-gray-600 italic">
                         {article.description}
                     </p>
-                )}
+                ) : null}
             </header>
 
             <div className="prose prose-xl max-w-none text-lg leading-relaxed">

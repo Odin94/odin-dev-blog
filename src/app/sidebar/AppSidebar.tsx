@@ -68,7 +68,6 @@ const menuItems = [
 export function AppSidebar() {
     return (
         <div className="flex flex-col p-6 md:h-screen">
-            {/* Header */}
             <SidebarHeader />
 
             {/* Menu */}
@@ -77,7 +76,7 @@ export function AppSidebar() {
                     <div key={item.title}>
                         <Link
                             href={item.url}
-                            {...(item.target && { target: item.target })}
+                            {...(!!item.target && { target: item.target })}
                             className="flex items-center gap-3 rounded-md px-4 py-2 text-lg text-white transition-colors duration-500 hover:bg-red-800 hover:text-cyan-200"
                         >
                             <item.icon />
