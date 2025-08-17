@@ -1,4 +1,5 @@
 import { ArticleData } from "@/lib/types"
+import { getValidArticleFolders } from "@/lib/utils"
 import { promises as fs } from "fs"
 import matter from "gray-matter"
 import Link from "next/link"
@@ -6,47 +7,36 @@ import path from "path"
 
 // This function runs at build time to get all articles
 async function getAllArticles(): Promise<ArticleData[]> {
-    const articlesDirectory = path.join(process.cwd(), "src/app/articles")
+    const articleFolders = await getValidArticleFolders()
 
     try {
-        const articleFolders = await fs.readdir(articlesDirectory)
-
         const articles = await Promise.all(
-            articleFolders
-                .filter((folder) => !folder.startsWith(".")) // Exclude hidden folders
-                .map(async (folder) => {
-                    const articlePath = path.join(
-                        articlesDirectory,
-                        folder,
-                        "index.md",
-                    )
+            articleFolders.map(async (folder) => {
+                const articlePath = path.join(folder, "index.md")
 
-                    try {
-                        const fileContents = await fs.readFile(
-                            articlePath,
-                            "utf8",
-                        )
-                        const { data } = matter(fileContents)
+                try {
+                    const fileContents = await fs.readFile(articlePath, "utf8")
+                    const { data } = matter(fileContents)
 
-                        // Only include non-draft articles
-                        if (data.draft !== true) {
-                            return {
-                                title: data.title || "",
-                                date: data.date || "",
-                                description: data.description || "",
-                                category: data.category || "",
-                                tags: data.tags || [],
-                                draft: data.draft || false,
-                                slug: data.slug || folder,
-                                socialImage: data.socialImage,
-                            } as ArticleData
-                        }
-                    } catch (error) {
-                        console.warn(`Could not read article ${folder}:`, error)
+                    // Only include non-draft articles
+                    if (data.draft !== true) {
+                        return {
+                            title: data.title || "",
+                            date: data.date || "",
+                            description: data.description || "",
+                            category: data.category || "",
+                            tags: data.tags || [],
+                            draft: data.draft || false,
+                            slug: data.slug || folder,
+                            socialImage: data.socialImage,
+                        } as ArticleData
                     }
+                } catch (error) {
+                    console.warn(`Could not read article ${folder}:`, error)
+                }
 
-                    return null
-                }),
+                return null
+            }),
         )
 
         // Filter out null values and sort by date (newest first)

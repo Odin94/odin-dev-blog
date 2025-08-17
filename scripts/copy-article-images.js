@@ -12,8 +12,6 @@ function copyArticleImages() {
         fs.mkdirSync(publicArticlesDir, { recursive: true })
     }
 
-    const slugToFolderMap = {}
-
     try {
         const articleFolders = fs.readdirSync(articlesDir)
 
@@ -24,26 +22,26 @@ function copyArticleImages() {
 
             if (!fs.statSync(articlePath).isDirectory()) continue
 
-            const publicArticlePath = path.join(publicArticlesDir, folder)
-
-            if (!fs.existsSync(publicArticlePath)) {
-                fs.mkdirSync(publicArticlePath, { recursive: true })
-            }
-
             const markdownPath = path.join(articlePath, "index.md")
+            let slug = folder // fallback to folder name
+
             if (fs.existsSync(markdownPath)) {
                 try {
                     const fileContents = fs.readFileSync(markdownPath, "utf8")
                     const { data } = matter(fileContents)
-                    const slug = data.slug || folder
-                    slugToFolderMap[slug] = folder
+                    slug = data.slug || folder
                 } catch (error) {
                     console.warn(
                         `Could not read markdown file in ${folder}:`,
                         error,
                     )
-                    slugToFolderMap[folder] = folder // fallback
                 }
+            }
+
+            const publicSlugPath = path.join(publicArticlesDir, slug)
+
+            if (!fs.existsSync(publicSlugPath)) {
+                fs.mkdirSync(publicSlugPath, { recursive: true })
             }
 
             const files = fs.readdirSync(articlePath)
@@ -57,21 +55,16 @@ function copyArticleImages() {
                     continue
 
                 const sourcePath = path.join(articlePath, file)
-                const destPath = path.join(publicArticlePath, file)
+                const destPath = path.join(publicSlugPath, file)
 
-                // Copy the file
                 fs.copyFileSync(sourcePath, destPath)
-                console.log(`Copied: ${sourcePath} -> ${destPath}`)
+
+                console.log(
+                    `Copied: ${path.relative(process.cwd(), sourcePath)} -> ${path.relative(process.cwd(), destPath)}`,
+                )
             }
         }
 
-        // Write the slug to folder mapping to a JSON file
-        const mappingPath = path.join(
-            process.cwd(),
-            "src/lib/article-mapping.json",
-        )
-        fs.writeFileSync(mappingPath, JSON.stringify(slugToFolderMap, null, 2))
-        console.log(`Created mapping file: ${mappingPath}`)
         console.log("Article images copied successfully!")
     } catch (error) {
         console.error("Error copying article images:", error)

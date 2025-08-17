@@ -1,6 +1,5 @@
 import React from "react"
 import Image from "next/image"
-import slugToFolderMap from "@/lib/article-mapping.json"
 import type { Components } from "react-markdown"
 
 // Custom image component to handle relative paths
@@ -32,10 +31,7 @@ function CustomImage({
         )
     }
 
-    const folderName =
-        slugToFolderMap[articleSlug as keyof typeof slugToFolderMap] ||
-        articleSlug
-    const imagePath = `/articles/${folderName}/${src}`
+    const imagePath = `/articles/${articleSlug}/${src}`
 
     return (
         <Image

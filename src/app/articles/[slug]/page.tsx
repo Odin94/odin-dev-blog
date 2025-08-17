@@ -7,9 +7,9 @@ import { createMarkdownComponents } from "@/components/MarkdownComponents"
 import { ArticleData } from "@/lib/types"
 
 type ArticlePageProps = {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 // This function runs at build time to generate static paths
