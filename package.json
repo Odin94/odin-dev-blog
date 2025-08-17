@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node scripts/copy-article-images.js && next dev --turbopack",
-    "build": "node scripts/copy-article-images.js && next build",
+    "dev": "npm run copy-images && next dev --turbopack",
+    "build": "npm run copy-images && next build",
     "start": "next start",
     "lint": "next lint",
-    "copy-images": "node scripts/copy-article-images.js"
+    "copy-images": "node scripts/copy-article-images.mjs"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.13",
