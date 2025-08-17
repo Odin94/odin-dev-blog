@@ -1,18 +1,8 @@
+import { ArticleData } from "@/lib/types"
 import { promises as fs } from "fs"
-import path from "path"
 import matter from "gray-matter"
 import Link from "next/link"
-
-interface ArticleData {
-    title: string
-    date: string
-    description: string
-    category: string
-    tags: string[]
-    draft: boolean
-    slug: string
-    socialImage?: string
-}
+import path from "path"
 
 // This function runs at build time to get all articles
 async function getAllArticles(): Promise<ArticleData[]> {

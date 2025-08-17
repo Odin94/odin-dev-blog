@@ -2,6 +2,7 @@ import { SocialMedia } from "@/components/SocialMedia"
 import { Coffee, Home, Settings } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { SidebarHeader } from "./SidebarHeader"
 
 const menuItems = [
     {
@@ -66,23 +67,12 @@ const menuItems = [
 
 export function AppSidebar() {
     return (
-        <div className="flex h-screen flex-col p-6">
+        <div className="flex flex-col p-6 md:h-screen">
             {/* Header */}
-            <div className="flex flex-col items-center">
-                <Image
-                    src="/profile_25.jpg"
-                    height={200}
-                    width={200}
-                    alt="Profile Image"
-                    className="aspect-square rounded-full object-cover"
-                />
-                <h1 className="mt-8 text-6xl font-bold text-white">TTRPG</h1>
-                <h1 className="text-6xl font-bold text-white">Tools</h1>
-                <h2 className="text-xl text-white italic">By Odin</h2>
-            </div>
+            <SidebarHeader />
 
             {/* Menu */}
-            <nav className="mt-20 flex-1 space-y-0">
+            <nav className="mt-8 flex-1 space-y-0 md:mt-20">
                 {menuItems.map((item) => (
                     <div key={item.title}>
                         <Link
@@ -103,7 +93,7 @@ export function AppSidebar() {
             </nav>
 
             {/* Footer */}
-            <div className="mt-auto flex flex-col items-center">
+            <div className="mt-8 flex flex-col items-center md:mt-auto">
                 <a
                     href="https://ko-fi.com/odin_dev"
                     target="_blank"

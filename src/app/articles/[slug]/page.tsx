@@ -4,20 +4,9 @@ import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
 import { getValidArticleFolders } from "@/lib/utils"
 import { createMarkdownComponents } from "@/components/MarkdownComponents"
+import { ArticleData } from "@/lib/types"
 
-interface ArticleData {
-    title: string
-    date: string
-    description: string
-    category: string
-    tags: string[]
-    draft: boolean
-    slug: string
-    socialImage?: string
-    content?: string
-}
-
-interface ArticlePageProps {
+type ArticlePageProps = {
     params: {
         slug: string
     }
