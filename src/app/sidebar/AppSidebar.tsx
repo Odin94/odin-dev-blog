@@ -1,5 +1,5 @@
 import { SocialMedia } from "@/components/SocialMedia"
-import { Coffee, Home, Settings } from "lucide-react"
+import { Coffee, Home } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { SidebarHeader } from "./SidebarHeader"
@@ -58,11 +58,11 @@ const menuItems = [
         },
         target: "_blank",
     },
-    {
-        title: "Impressum",
-        url: "/impressum",
-        icon: Settings,
-    },
+]
+
+const legalLinks = [
+    { title: "Impressum", url: "/impressum" },
+    { title: "Datenschutzerklärung", url: "/datenschutzerklaerung" },
 ]
 
 export function AppSidebar() {
@@ -92,7 +92,7 @@ export function AppSidebar() {
             </nav>
 
             {/* Footer */}
-            <div className="mt-8 flex flex-col items-center md:mt-auto">
+            <div className="mt-8 flex flex-col items-center gap-4 md:mt-auto">
                 <a
                     href="https://ko-fi.com/odin_dev"
                     target="_blank"
@@ -101,6 +101,17 @@ export function AppSidebar() {
                     <Coffee className="h-5 w-5" />
                     Support me on Ko-fi
                 </a>
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-sm text-white/50 transition-colors">
+                    {legalLinks.map((item) => (
+                        <Link
+                            key={item.title}
+                            href={item.url}
+                            className="hover:text-white/80"
+                        >
+                            {item.title}
+                        </Link>
+                    ))}
+                </div>
             </div>
         </div>
     )
