@@ -78,10 +78,10 @@ export function LegalPage({
         <footer className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground sm:flex-row sm:text-left">
           <div>© {new Date().getFullYear()} Odin Matthias</div>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <a href="/impressum" className="hover:text-stamp">
+            <a href="/impressum/" className="hover:text-stamp">
               Impressum
             </a>
-            <a href="/datenschutz" className="hover:text-stamp">
+            <a href="/datenschutz/" className="hover:text-stamp">
               Datenschutz
             </a>
             <button type="button" data-privacy-settings className="hover:text-stamp">

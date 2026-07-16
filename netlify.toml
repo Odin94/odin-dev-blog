@@ -10,12 +10,12 @@ NETLIFY_NEXT_PLUGIN_SKIP = "true"
 # Preserve links and search results from the previous Next.js site.
 [[redirects]]
 from = "/articles"
-to = "/blog"
+to = "/blog/"
 status = 301
 
 [[redirects]]
 from = "/datenschutzerklaerung"
-to = "/datenschutz"
+to = "/datenschutz/"
 status = 301
 
 [[headers]]

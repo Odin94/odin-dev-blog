@@ -224,7 +224,7 @@ export function HomePage() {
               </h2>
             </div>
             <a
-              href="/blog"
+              href="/blog/"
               className="hidden font-mono text-[11px] uppercase tracking-widest text-muted-foreground underline decoration-stamp/40 decoration-2 underline-offset-4 transition-colors hover:text-stamp sm:block"
             >
               All posts →
@@ -235,7 +235,7 @@ export function HomePage() {
             {posts.map((post, i) => (
               <li key={post.title}>
                 <a
-                  href={`/articles/${post.slug}`}
+                  href={`/articles/${post.slug}/`}
                   className={`group grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-6 gap-y-2 px-6 py-5 sm:grid-cols-[110px_minmax(0,1fr)_auto] ${
                     i > 0 ? "border-t border-ink/10" : ""
                   }`}
@@ -258,7 +258,7 @@ export function HomePage() {
           </ul>
 
           <div className="mt-4 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground">
-            <a href="/blog" className="transition-colors hover:text-stamp">
+            <a href="/blog/" className="transition-colors hover:text-stamp">
               Browse the notebook →
             </a>
           </div>
@@ -268,10 +268,10 @@ export function HomePage() {
         <footer className="mt-24 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground sm:flex-row sm:text-left">
           <div>© {new Date().getFullYear()} Odin Matthias</div>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <a href="/impressum" className="hover:text-stamp">
+            <a href="/impressum/" className="hover:text-stamp">
               Impressum
             </a>
-            <a href="/datenschutz" className="hover:text-stamp">
+            <a href="/datenschutz/" className="hover:text-stamp">
               Datenschutz
             </a>
             <button type="button" data-privacy-settings className="hover:text-stamp">

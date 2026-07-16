@@ -23,9 +23,7 @@ const {
   publishedTime,
   tags = [],
 } = Astro.props;
-const canonicalPath =
-  Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
-const canonicalUrl = new URL(canonicalPath, Astro.site ?? "https://odin-matthias.de");
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://odin-matthias.de");
 const imageUrl = new URL(image, Astro.site ?? "https://odin-matthias.de");
 const locale = lang === "de" ? "de_DE" : "en_US";
 

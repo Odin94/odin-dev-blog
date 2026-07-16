@@ -10,7 +10,7 @@ export function GET() {
   const articleEntries = posts
     .map(
       (post) => `  <url>
-    <loc>${baseUrl}/articles/${post.slug}</loc>
+    <loc>${baseUrl}/articles/${post.slug}/</loc>
     <lastmod>${post.date.slice(0, 10)}</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
@@ -26,7 +26,7 @@ export function GET() {
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>${baseUrl}/blog</loc>
+    <loc>${baseUrl}/blog/</loc>
     ${latestPostDate ? `<lastmod>${latestPostDate.slice(0, 10)}</lastmod>` : ""}
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

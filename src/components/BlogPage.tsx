@@ -58,7 +58,7 @@ export function BlogPage() {
           <ul className="paper-grain overflow-hidden rounded-md border border-ink/10 bg-card/85">
             {posts.map((post, index) => (
               <li key={post.title} className={index > 0 ? "border-t border-ink/10" : undefined}>
-                <a href={`/articles/${post.slug}`}>
+                <a href={`/articles/${post.slug}/`}>
                   <article className="group grid gap-4 px-6 py-6 transition-colors hover:bg-parchment-2/35 sm:grid-cols-[115px_minmax(0,1fr)_auto] sm:items-center sm:gap-6 sm:px-8 sm:py-7">
                     <div className="flex items-center gap-3 sm:block">
                       <time
@@ -96,10 +96,10 @@ export function BlogPage() {
         <footer className="mt-24 flex flex-col items-center justify-between gap-4 border-t border-ink/10 pt-8 text-center font-mono text-[11px] uppercase tracking-widest text-muted-foreground sm:flex-row sm:text-left">
           <div>© {new Date().getFullYear()} Odin Matthias</div>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <a href="/impressum" className="hover:text-stamp">
+            <a href="/impressum/" className="hover:text-stamp">
               Impressum
             </a>
-            <a href="/datenschutz" className="hover:text-stamp">
+            <a href="/datenschutz/" className="hover:text-stamp">
               Datenschutz
             </a>
             <button type="button" data-privacy-settings className="hover:text-stamp">
