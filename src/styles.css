@@ -1,0 +1,325 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@source not "../src/components/ui";
+
+@font-face {
+  font-family: "Lora Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("../node_modules/@fontsource-variable/lora/files/lora-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Lora Variable";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 400 700;
+  src: url("../node_modules/@fontsource-variable/lora/files/lora-latin-wght-italic.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Newsreader Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Newsreader Variable";
+  font-style: italic;
+  font-display: swap;
+  font-weight: 200 800;
+  src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-italic.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "JetBrains Mono Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 100 800;
+  src: url("../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2")
+    format("woff2-variations");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Custom brand tokens */
+  --color-parchment: var(--parchment);
+  --color-parchment-2: var(--parchment-2);
+  --color-ink: var(--ink);
+  --color-stamp: var(--stamp);
+  --color-stamp-soft: var(--stamp-soft);
+  --color-moss: var(--moss);
+  --color-sky: var(--sky);
+  --color-wave-1: var(--wave-1);
+  --color-wave-2: var(--wave-2);
+  --color-wave-3: var(--wave-3);
+
+  --font-display: "Lora Variable", ui-serif, Georgia, serif;
+  --font-body: "Newsreader Variable", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+}
+
+:root {
+  --radius: 0.5rem;
+
+  /* Warm parchment paper */
+  --parchment: oklch(0.965 0.02 82);
+  --parchment-2: oklch(0.94 0.03 78);
+  --ink: oklch(0.24 0.02 55);
+  --stamp: oklch(0.5 0.14 32); /* burnt sienna */
+  --stamp-soft: oklch(0.72 0.11 45);
+  --moss: oklch(0.5 0.08 145); /* muted green */
+  --sky: oklch(0.72 0.08 220); /* dusty teal */
+
+  /* Layered wave palette (warm & soft) */
+  --wave-1: oklch(0.9 0.05 60);
+  --wave-2: oklch(0.82 0.09 40);
+  --wave-3: oklch(0.7 0.11 25);
+
+  /* shadcn-ish neutrals mapped onto parchment */
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --card: oklch(0.985 0.015 85);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.985 0.015 85);
+  --popover-foreground: var(--ink);
+  --primary: var(--stamp);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.9 0.03 75);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.92 0.02 75);
+  --muted-foreground: oklch(0.42 0.02 55);
+  --accent: var(--stamp-soft);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.24 0.02 55 / 0.14);
+  --input: oklch(0.24 0.02 55 / 0.18);
+  --ring: var(--stamp);
+}
+
+.dark {
+  --parchment: oklch(0.2 0.02 55);
+  --parchment-2: oklch(0.24 0.03 60);
+  --ink: oklch(0.94 0.02 80);
+  --stamp: oklch(0.72 0.13 40);
+  --stamp-soft: oklch(0.62 0.1 45);
+  --moss: oklch(0.65 0.09 145);
+  --sky: oklch(0.78 0.08 220);
+  --wave-1: oklch(0.28 0.03 55);
+  --wave-2: oklch(0.34 0.05 40);
+  --wave-3: oklch(0.42 0.08 30);
+
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --card: oklch(0.26 0.02 55);
+  --card-foreground: var(--ink);
+  --popover: oklch(0.26 0.02 55);
+  --popover-foreground: var(--ink);
+  --primary: var(--stamp);
+  --primary-foreground: oklch(0.18 0.02 55);
+  --secondary: oklch(0.3 0.03 55);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.3 0.03 55);
+  --muted-foreground: oklch(0.72 0.02 80);
+  --accent: var(--stamp-soft);
+  --accent-foreground: oklch(0.18 0.02 55);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.94 0.02 80 / 0.12);
+  --input: oklch(0.94 0.02 80 / 0.16);
+  --ring: var(--stamp);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  :where(a, button, input, select, textarea, summary):focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-md);
+  background: var(--color-ink);
+  color: var(--color-background);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .card-tilt-l,
+  .card-tilt-r,
+  .card-tilt-s {
+    transform: none;
+  }
+}
+
+@supports (content-visibility: auto) {
+  .render-lazy {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 800px;
+  }
+}
+
+/* Subtle paper grain overlay */
+@utility paper-grain {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.28  0 0 0 0 0.18  0 0 0 0.35 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+}
+
+/* Scotch-tape strip for pinned cards */
+@utility tape-strip {
+  position: absolute;
+  height: 1.4rem;
+  width: 4.5rem;
+  background: linear-gradient(
+    180deg,
+    oklch(0.98 0.02 80 / 0.85) 0%,
+    oklch(0.94 0.03 75 / 0.75) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px oklch(0.24 0.02 55 / 0.06),
+    0 1px 2px oklch(0.24 0.02 55 / 0.12);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0) rotate(var(--r, 0deg));
+  }
+  50% {
+    transform: translateY(-6px) rotate(var(--r, 0deg));
+  }
+}
+
+@utility card-tilt-l {
+  --r: -1.2deg;
+  transform: rotate(var(--r));
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: rotate(0deg) translateY(-4px);
+  }
+}
+
+@utility card-tilt-r {
+  --r: 1.4deg;
+  transform: rotate(var(--r));
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: rotate(0deg) translateY(-4px);
+  }
+}
+
+@utility card-tilt-s {
+  --r: -0.6deg;
+  transform: rotate(var(--r));
+  transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+  &:hover {
+    transform: rotate(0deg) translateY(-4px);
+  }
+}
