@@ -4,6 +4,8 @@ publish = "dist"
 
 [build.environment]
 NODE_VERSION = "22"
+# The existing Netlify site still has the legacy Next.js runtime enabled.
+NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 # Preserve links and search results from the previous Next.js site.
 [[redirects]]
