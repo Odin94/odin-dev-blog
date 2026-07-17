@@ -1,0 +1,51 @@
+---
+import { WavyBackdrop } from "@/components/WavyBackdrop";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Page not found — Odin Matthias"
+  description="The requested page could not be found."
+  noindex
+>
+  <div class="relative min-h-screen">
+    <WavyBackdrop />
+
+    <main
+      id="main-content"
+      class="mx-auto flex min-h-screen w-full max-w-3xl items-center px-5 py-16 sm:px-8"
+    >
+      <section
+        class="paper-grain relative w-full rounded-lg border border-ink/10 bg-card/90 p-8 shadow-[0_1px_0_rgba(0,0,0,0.03),0_20px_40px_-20px_rgba(60,40,20,0.25)] backdrop-blur-sm sm:p-12"
+      >
+        <span aria-hidden="true" class="tape-strip -top-3 left-8 -rotate-6"></span>
+        <span aria-hidden="true" class="tape-strip -top-3 right-10 rotate-3"></span>
+
+        <div class="font-mono text-[10px] uppercase tracking-[0.24em] text-stamp">
+          Error 404
+        </div>
+        <h1 class="mt-2 font-display text-4xl leading-[1.02] tracking-tight sm:text-6xl">
+          This page wandered off.
+        </h1>
+        <p class="mt-5 max-w-[52ch] text-lg leading-relaxed text-ink/80">
+          The address may have changed, or the page may never have existed. The notebook and
+          project shelf are still where you left them.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a
+            href="/"
+            class="inline-flex items-center rounded-md bg-stamp px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm ring-1 ring-stamp/60 transition-transform hover:-translate-y-0.5"
+          >
+            Back home
+          </a>
+          <a
+            href="/blog/"
+            class="inline-flex items-center rounded-md border border-ink/15 bg-card/70 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-card"
+          >
+            Browse the notebook
+          </a>
+        </div>
+      </section>
+    </main>
+  </div>
+</BaseLayout>

@@ -1,0 +1,164 @@
+<div
+  data-analytics-consent
+  hidden
+  class="fixed right-3 bottom-3 left-3 z-50 sm:right-4 sm:left-auto sm:w-80"
+>
+  <section
+    role="dialog"
+    aria-labelledby="privacy-consent-title"
+    aria-describedby="privacy-consent-description"
+    class="rounded-md border border-ink/10 bg-card/95 p-3 shadow-[0_8px_24px_-12px_rgba(35,25,15,0.35)] backdrop-blur-sm"
+  >
+    <div class="font-mono text-[9px] uppercase tracking-[0.18em] text-stamp">Privacy</div>
+    <h2 id="privacy-consent-title" class="mt-0.5 text-sm font-semibold">Analytics cookies?</h2>
+    <p id="privacy-consent-description" class="mt-1 text-xs leading-relaxed text-ink/65">
+      Optional cookies help improve this site. <a
+        href="/datenschutz/"
+        class="text-stamp underline underline-offset-2">Learn more</a
+      >.
+    </p>
+    <div class="mt-2.5 flex flex-wrap gap-1.5">
+        <button
+          type="button"
+          data-analytics-choice="rejected"
+          class="cursor-pointer rounded border border-ink/15 bg-card px-2.5 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-parchment-2/50"
+        >
+          Decline
+        </button>
+        <button
+          type="button"
+          data-analytics-choice="accepted"
+          class="cursor-pointer rounded border border-stamp/70 bg-stamp px-2.5 py-1.5 text-xs font-medium text-primary-foreground transition-colors hover:bg-stamp/90"
+        >
+          Accept
+        </button>
+    </div>
+    <p
+      data-analytics-current
+      hidden
+      class="mt-2 font-mono text-[9px] uppercase tracking-wider text-muted-foreground"
+    >
+    </p>
+  </section>
+</div>
+
+<script>
+  const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
+  const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com";
+  const consentStorageKey = "odin-analytics-consent";
+  const consentDialog = document.querySelector("[data-analytics-consent]");
+  const currentChoice = consentDialog?.querySelector("[data-analytics-current]");
+  let posthogClient: (typeof import("posthog-js"))["default"] | null = null;
+  let posthogInitialization: Promise<(typeof import("posthog-js"))["default"] | null> | null =
+    null;
+  let sessionConsent: "accepted" | "rejected" | null = null;
+
+  const storedConsent = () => {
+    try {
+      const value = window.localStorage.getItem(consentStorageKey);
+      return value === "accepted" || value === "rejected" ? value : sessionConsent;
+    } catch {
+      return sessionConsent;
+    }
+  };
+
+  const storeConsent = (consent: "accepted" | "rejected") => {
+    sessionConsent = consent;
+    try {
+      window.localStorage.setItem(consentStorageKey, consent);
+    } catch {
+      // The choice still applies to this page if browser storage is unavailable.
+    }
+  };
+
+  const showConsent = () => {
+    if (!(consentDialog instanceof HTMLElement)) return;
+
+    const consent = storedConsent();
+    if (currentChoice instanceof HTMLElement) {
+      currentChoice.hidden = consent === null;
+      currentChoice.textContent = consent
+        ? `Current choice: ${consent === "accepted" ? "Cookies accepted" : "Cookies declined"}`
+        : "";
+    }
+    consentDialog.hidden = false;
+  };
+
+  const applyConsentToPostHog = (
+    posthog: (typeof import("posthog-js"))["default"],
+    consent: "accepted" | "rejected",
+  ) => {
+    if (consent === "accepted") {
+      if (!posthog.has_opted_in_capturing()) posthog.opt_in_capturing();
+    } else if (!posthog.has_opted_out_capturing()) {
+      posthog.opt_out_capturing();
+    }
+  };
+
+  const startPostHog = () => {
+    if (!posthogKey) return Promise.resolve(null);
+    if (posthogInitialization) return posthogInitialization;
+
+    posthogInitialization = import("posthog-js").then(({ default: posthog }) => {
+      posthogClient = posthog;
+
+      if (!posthog.__loaded) {
+        posthog.init(posthogKey, {
+          api_host: posthogHost,
+          defaults: "2025-05-24",
+          capture_exceptions: true,
+          cookieless_mode: "on_reject",
+          opt_out_persistence_by_default: true,
+          debug: import.meta.env.DEV,
+        });
+      }
+
+      // Synchronize an existing choice after initialization too. This handles a choice made while
+      // the analytics bundle was loading and migrates choices saved by the previous implementation.
+      const latestConsent = storedConsent();
+      if (latestConsent) applyConsentToPostHog(posthog, latestConsent);
+
+      return posthog;
+    });
+
+    return posthogInitialization;
+  };
+
+  const schedule = (callback: () => void) => {
+    const requestIdleCallback = (
+      window as Window & { requestIdleCallback?: (callback: () => void) => number }
+    ).requestIdleCallback;
+    if (requestIdleCallback) {
+      requestIdleCallback.call(window, callback);
+    } else {
+      globalThis.setTimeout(callback, 200);
+    }
+  };
+
+  const consent = storedConsent();
+  if (consent === null) showConsent();
+  schedule(() => void startPostHog());
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    const settingsButton = target?.closest("[data-privacy-settings]");
+    const choiceButton = target?.closest("[data-analytics-choice]");
+
+    if (settingsButton) {
+      event.preventDefault();
+      showConsent();
+      return;
+    }
+
+    if (!(choiceButton instanceof HTMLButtonElement)) return;
+
+    const nextConsent = choiceButton.dataset.analyticsChoice;
+    if (nextConsent !== "accepted" && nextConsent !== "rejected") return;
+
+    storeConsent(nextConsent);
+    if (consentDialog instanceof HTMLElement) consentDialog.hidden = true;
+
+    if (posthogClient?.__loaded) applyConsentToPostHog(posthogClient, nextConsent);
+    else void startPostHog();
+  });
+</script>

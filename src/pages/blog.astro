@@ -1,0 +1,12 @@
+---
+import { BlogPage } from "@/components/BlogPage";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const title = "Blog — Odin Matthias";
+const description =
+  "Notes from Odin Matthias on making software, tabletop roleplaying games, and creative experiments.";
+---
+
+<BaseLayout {title} {description}>
+  <BlogPage />
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://odin-matthias.de/sitemap.xml
