@@ -5,7 +5,7 @@
 @font-face {
   font-family: "Lora Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: block;
   font-weight: 400 700;
   src: url("../node_modules/@fontsource-variable/lora/files/lora-latin-wght-normal.woff2")
     format("woff2-variations");
@@ -17,7 +17,7 @@
 @font-face {
   font-family: "Lora Variable";
   font-style: italic;
-  font-display: swap;
+  font-display: block;
   font-weight: 400 700;
   src: url("../node_modules/@fontsource-variable/lora/files/lora-latin-wght-italic.woff2")
     format("woff2-variations");
@@ -29,7 +29,7 @@
 @font-face {
   font-family: "Newsreader Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: block;
   font-weight: 200 800;
   src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-normal.woff2")
     format("woff2-variations");
@@ -41,7 +41,7 @@
 @font-face {
   font-family: "Newsreader Variable";
   font-style: italic;
-  font-display: swap;
+  font-display: block;
   font-weight: 200 800;
   src: url("../node_modules/@fontsource-variable/newsreader/files/newsreader-latin-wght-italic.woff2")
     format("woff2-variations");
@@ -53,7 +53,7 @@
 @font-face {
   font-family: "JetBrains Mono Variable";
   font-style: normal;
-  font-display: swap;
+  font-display: block;
   font-weight: 100 800;
   src: url("../node_modules/@fontsource-variable/jetbrains-mono/files/jetbrains-mono-latin-wght-normal.woff2")
     format("woff2-variations");
