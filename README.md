@@ -20,4 +20,5 @@ pnpm build
 pnpm preview
 ```
 
-The production site is generated in `dist/`; `pnpm preview` serves that build locally.
+The production site is generated in `dist/`, with images optimized automatically; `pnpm preview`
+serves that build locally.
