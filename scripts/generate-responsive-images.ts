@@ -5,6 +5,7 @@ import sharp from "sharp";
 
 type ImageVariant = {
   input: string;
+  quality: number;
   widths: number[];
 };
 
@@ -14,16 +15,18 @@ const publicDirectory = path.join(projectRoot, "public");
 const variants: ImageVariant[] = [
   {
     input: "profile_25.webp",
+    quality: 80,
     widths: [256, 384],
   },
   ...["progeny", "hiveborn", "cozycrowns"].map((name) => ({
     input: `projects/${name}.jpg`,
-    widths: [384, 640, 960],
+    quality: 70,
+    widths: [384, 608, 640, 960],
   })),
 ];
 
 await Promise.all(
-  variants.flatMap(({ input, widths }) =>
+  variants.flatMap(({ input, quality, widths }) =>
     widths.map(async (width) => {
       const inputPath = path.join(publicDirectory, input);
       const parsedPath = path.parse(inputPath);
@@ -33,7 +36,7 @@ await Promise.all(
       await sharp(inputPath)
         .rotate()
         .resize({ width, withoutEnlargement: true })
-        .webp({ quality: 80, effort: 6, smartSubsample: true })
+        .webp({ quality, effort: 6, smartSubsample: true })
         .toFile(outputPath);
     }),
   ),

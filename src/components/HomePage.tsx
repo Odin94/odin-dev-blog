@@ -25,7 +25,7 @@ const projects: Project[] = [
     href: "https://progeny.odin-matthias.de",
     image: "/projects/progeny.jpg",
     imageSrcSet:
-      "/projects/progeny-384w.webp 384w, /projects/progeny-640w.webp 640w, /projects/progeny-960w.webp 960w, /projects/progeny.jpg 1280w",
+      "/projects/progeny-384w.webp 384w, /projects/progeny-608w.webp 608w, /projects/progeny-640w.webp 640w, /projects/progeny-960w.webp 960w, /projects/progeny.jpg 1280w",
     imageAlt: "Progeny character creator landing page",
     tilt: "l",
   },
@@ -37,7 +37,7 @@ const projects: Project[] = [
     href: "https://hiveborn.odin-matthias.de",
     image: "/projects/hiveborn.jpg",
     imageSrcSet:
-      "/projects/hiveborn-384w.webp 384w, /projects/hiveborn-640w.webp 640w, /projects/hiveborn-960w.webp 960w, /projects/hiveborn.jpg 1280w",
+      "/projects/hiveborn-384w.webp 384w, /projects/hiveborn-608w.webp 608w, /projects/hiveborn-640w.webp 640w, /projects/hiveborn-960w.webp 960w, /projects/hiveborn.jpg 1280w",
     imageAlt: "Hiveborn digital character sheet",
     tilt: "s",
   },
@@ -49,7 +49,7 @@ const projects: Project[] = [
     href: "https://cozycrowns.odin-matthias.de",
     image: "/projects/cozycrowns.jpg",
     imageSrcSet:
-      "/projects/cozycrowns-384w.webp 384w, /projects/cozycrowns-640w.webp 640w, /projects/cozycrowns-960w.webp 960w, /projects/cozycrowns.jpg 1280w",
+      "/projects/cozycrowns-384w.webp 384w, /projects/cozycrowns-608w.webp 608w, /projects/cozycrowns-640w.webp 640w, /projects/cozycrowns-960w.webp 960w, /projects/cozycrowns.jpg 1280w",
     imageAlt: "CozyCrowns digital character sheet",
     tilt: "r",
   },
