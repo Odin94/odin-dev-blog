@@ -3,13 +3,18 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
+type OptimizationResult = {
+  before: number;
+  after: number;
+};
+
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outputDirectory = path.join(projectRoot, "dist");
 const supportedExtensions = new Set([".jpg", ".jpeg", ".png", ".webp"]);
 
-async function findImages(directory) {
+async function findImages(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
-  const images = [];
+  const images: string[] = [];
 
   for (const entry of entries) {
     const entryPath = path.join(directory, entry.name);
@@ -24,7 +29,7 @@ async function findImages(directory) {
   return images;
 }
 
-async function optimizeImage(imagePath) {
+async function optimizeImage(imagePath: string): Promise<OptimizationResult> {
   const extension = path.extname(imagePath).toLowerCase();
   const input = await readFile(imagePath);
   let image = sharp(input).rotate();
@@ -58,7 +63,7 @@ console.log(
   `Optimized ${optimizedCount}/${imagePaths.length} images: saved ${formatBytes(before - after)} (${savedPercentage}%).`,
 );
 
-function formatBytes(bytes) {
+function formatBytes(bytes: number): string {
   if (bytes < 1024) return `${bytes} B`;
   return `${(bytes / 1024).toFixed(1)} KiB`;
 }

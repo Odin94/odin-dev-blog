@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "pnpm generate:images && astro build && pnpm optimize:images",
-    "generate:images": "node scripts/generate-responsive-images.mjs",
-    "optimize:images": "node scripts/optimize-images.mjs",
+    "generate:images": "node --experimental-strip-types scripts/generate-responsive-images.ts",
+    "optimize:images": "node --experimental-strip-types scripts/optimize-images.ts",
     "preview": "astro preview",
     "check": "astro check",
     "lint": "oxlint . --fix",

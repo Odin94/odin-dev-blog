@@ -3,10 +3,15 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 
+type ImageVariant = {
+  input: string;
+  widths: number[];
+};
+
 const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const publicDirectory = path.join(projectRoot, "public");
 
-const variants = [
+const variants: ImageVariant[] = [
   {
     input: "profile_25.webp",
     widths: [256, 384],
