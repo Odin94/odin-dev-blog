@@ -1,6 +1,7 @@
 ---
 import "../styles.css";
 import PostHog from "@/components/PostHog.astro";
+import loraItalicUrl from "@fontsource-variable/lora/files/lora-latin-wght-italic.woff2?url";
 import loraUrl from "@fontsource-variable/lora/files/lora-latin-wght-normal.woff2?url";
 
 interface Props {
@@ -12,6 +13,7 @@ interface Props {
   type?: "website" | "article";
   publishedTime?: string;
   tags?: string[];
+  preloadDisplayItalic?: boolean;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   type = "website",
   publishedTime,
   tags = [],
+  preloadDisplayItalic = false,
 } = Astro.props;
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? "https://odin-matthias.de");
 const imageUrl = new URL(image, Astro.site ?? "https://odin-matthias.de");
@@ -107,6 +110,17 @@ const structuredData = {
     <meta name="twitter:image:alt" content={`Preview image for ${title}`} />
     <link rel="icon" href="/leaf-svgrepo-com.svg" type="image/svg+xml" />
     <link rel="preload" href={loraUrl} as="font" type="font/woff2" crossorigin="anonymous" />
+    {
+      preloadDisplayItalic && (
+        <link
+          rel="preload"
+          href={loraItalicUrl}
+          as="font"
+          type="font/woff2"
+          crossorigin="anonymous"
+        />
+      )
+    }
     <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
   <body>
