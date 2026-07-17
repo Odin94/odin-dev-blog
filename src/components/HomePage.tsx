@@ -3,6 +3,7 @@ import { posts } from "@/lib/posts";
 import { Heart } from "lucide-react";
 
 const PROFILE_IMG = "/profile_25.webp";
+const PROFILE_IMG_SRC_SET = "/profile_25-256w.webp 256w, /profile_25-384w.webp 384w";
 
 type Project = {
   title: string;
@@ -10,6 +11,7 @@ type Project = {
   blurb: string;
   href: string;
   image: string;
+  imageSrcSet: string;
   imageAlt: string;
   tilt: "l" | "r" | "s";
 };
@@ -22,6 +24,8 @@ const projects: Project[] = [
       "A friendly character creator for VtM v5 — pick a clan, spend your dots, print a sheet that doesn't look like a spreadsheet.",
     href: "https://progeny.odin-matthias.de",
     image: "/projects/progeny.jpg",
+    imageSrcSet:
+      "/projects/progeny-384w.webp 384w, /projects/progeny-640w.webp 640w, /projects/progeny-960w.webp 960w, /projects/progeny.jpg 1280w",
     imageAlt: "Progeny character creator landing page",
     tilt: "l",
   },
@@ -32,6 +36,8 @@ const projects: Project[] = [
       "A companion tool for Heart — build hivelings, roll delves, and track the slow, gorgeous decay of your delvers.",
     href: "https://hiveborn.odin-matthias.de",
     image: "/projects/hiveborn.jpg",
+    imageSrcSet:
+      "/projects/hiveborn-384w.webp 384w, /projects/hiveborn-640w.webp 640w, /projects/hiveborn-960w.webp 960w, /projects/hiveborn.jpg 1280w",
     imageAlt: "Hiveborn digital character sheet",
     tilt: "s",
   },
@@ -42,6 +48,8 @@ const projects: Project[] = [
       "Mystery-of-the-week helper for Brindlewood Bay: clue tracker, theory builder, and a very judgmental cat.",
     href: "https://cozycrowns.odin-matthias.de",
     image: "/projects/cozycrowns.jpg",
+    imageSrcSet:
+      "/projects/cozycrowns-384w.webp 384w, /projects/cozycrowns-640w.webp 640w, /projects/cozycrowns-960w.webp 960w, /projects/cozycrowns.jpg 1280w",
     imageAlt: "CozyCrowns digital character sheet",
     tilt: "r",
   },
@@ -80,6 +88,8 @@ export function HomePage() {
                 <div className="absolute -inset-1 -rotate-2 rounded-md bg-stamp/10" aria-hidden />
                 <img
                   src={PROFILE_IMG}
+                  srcSet={PROFILE_IMG_SRC_SET}
+                  sizes="(min-width: 640px) 160px, 128px"
                   alt="Portrait of Odin Matthias"
                   width={168}
                   height={168}
@@ -192,6 +202,8 @@ export function HomePage() {
                 <div className="relative aspect-video overflow-hidden rounded-[2px] border border-ink/15 bg-muted shadow-[inset_0_0_0_1px_rgba(255,255,255,0.25)]">
                   <img
                     src={p.image}
+                    srcSet={p.imageSrcSet}
+                    sizes="(min-width: 960px) 370px, (min-width: 640px) calc((100vw - 156px) / 2), calc(100vw - 68px)"
                     alt={p.imageAlt}
                     width={1280}
                     height={720}

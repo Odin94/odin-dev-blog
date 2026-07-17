@@ -5,7 +5,8 @@
   "sideEffects": false,
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && pnpm optimize:images",
+    "build": "pnpm generate:images && astro build && pnpm optimize:images",
+    "generate:images": "node scripts/generate-responsive-images.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
     "check": "astro check",
