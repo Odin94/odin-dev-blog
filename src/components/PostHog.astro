@@ -155,14 +155,30 @@
       if (posthog.conversations.isAvailable()) {
         posthog.conversations.show();
 
-        // show() renders the supported widget; open its chat panel for this explicit user action.
-        globalThis.setTimeout(() => {
+        // show() lazy-renders the supported widget. Wait for its launcher, then open the panel for
+        // this explicit user action. The project keeps automatic widget display disabled.
+        for (let renderAttempt = 0; renderAttempt < 30; renderAttempt += 1) {
           const openButton = document.querySelector<HTMLButtonElement>(
             '#ph-conversations-widget-container button[aria-label^="Open chat"]',
           );
-          openButton?.click();
-          setStatus("");
-        }, 50);
+          if (openButton) {
+            openButton.click();
+            setStatus("");
+            return;
+          }
+
+          const closeButton = document.querySelector<HTMLButtonElement>(
+            '#ph-conversations-widget-container button[aria-label="Close chat"]',
+          );
+          if (closeButton) {
+            setStatus("");
+            return;
+          }
+
+          await new Promise((resolve) => globalThis.setTimeout(resolve, 50));
+        }
+
+        setStatus("Chat is unavailable right now.");
         return;
       }
       await new Promise((resolve) => globalThis.setTimeout(resolve, 100));
