@@ -139,9 +139,16 @@ export function HomePage() {
               </p>
 
               <div className="mt-6 flex flex-wrap items-center gap-2">
+                <button
+                  type="button"
+                  data-contact-support
+                  className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-stamp px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm ring-1 ring-stamp/60 transition-transform hover:-translate-y-0.5 hover:rotate-[-0.5deg] active:translate-y-0"
+                >
+                  Contact me
+                </button>
                 <a
                   href="#projects"
-                  className="inline-flex items-center gap-2 rounded-md bg-stamp px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm ring-1 ring-stamp/60 transition-transform hover:-translate-y-0.5 hover:rotate-[-0.5deg] active:translate-y-0"
+                  className="inline-flex items-center gap-2 rounded-md border border-ink/15 bg-card/70 px-4 py-2 text-sm font-medium text-ink transition-colors hover:bg-card"
                 >
                   See what I&rsquo;ve built
                 </a>
@@ -154,6 +161,12 @@ export function HomePage() {
                   Browse all GitHub projects
                 </a>
               </div>
+              <p
+                data-support-status
+                role="status"
+                aria-live="polite"
+                className="mt-2 min-h-4 font-mono text-[10px] text-muted-foreground"
+              />
 
               <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-xs text-muted-foreground">
                 {socials.map((s) => (

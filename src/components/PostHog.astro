@@ -135,6 +135,40 @@
     }
   };
 
+  const openSupport = async () => {
+    const status = document.querySelector("[data-support-status]");
+    const setStatus = (message: string) => {
+      if (status instanceof HTMLElement) status.textContent = message;
+    };
+
+    setStatus("Opening chat…");
+    const posthog = await startPostHog();
+    if (!posthog) {
+      setStatus("Chat is unavailable right now.");
+      return;
+    }
+
+    // Conversations is loaded from PostHog's project configuration after the core SDK starts.
+    for (let attempt = 0; attempt < 50; attempt += 1) {
+      if (posthog.conversations.isAvailable()) {
+        posthog.conversations.show();
+
+        // show() renders the supported widget; open its chat panel for this explicit user action.
+        globalThis.setTimeout(() => {
+          const openButton = document.querySelector<HTMLButtonElement>(
+            '#ph-conversations-widget-container button[aria-label^="Open chat"]',
+          );
+          openButton?.click();
+          setStatus("");
+        }, 50);
+        return;
+      }
+      await new Promise((resolve) => globalThis.setTimeout(resolve, 100));
+    }
+
+    setStatus("Chat is unavailable right now.");
+  };
+
   const consent = storedConsent();
   if (consent === null) showConsent();
   schedule(() => void startPostHog());
@@ -142,7 +176,14 @@
   document.addEventListener("click", (event) => {
     const target = event.target instanceof Element ? event.target : null;
     const settingsButton = target?.closest("[data-privacy-settings]");
+    const supportButton = target?.closest("[data-contact-support]");
     const choiceButton = target?.closest("[data-analytics-choice]");
+
+    if (supportButton) {
+      event.preventDefault();
+      void openSupport();
+      return;
+    }
 
     if (settingsButton) {
       event.preventDefault();
