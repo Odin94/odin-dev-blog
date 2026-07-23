@@ -44,7 +44,8 @@
 
 <script>
   const posthogKey = import.meta.env.PUBLIC_POSTHOG_KEY;
-  const posthogHost = import.meta.env.PUBLIC_POSTHOG_HOST ?? "https://eu.i.posthog.com";
+  const posthogHost = "https://info.odin-matthias.com";
+  const posthogUiHost = "https://eu.posthog.com";
   const consentStorageKey = "odin-analytics-consent";
   const consentDialog = document.querySelector("[data-analytics-consent]");
   const currentChoice = consentDialog?.querySelector("[data-analytics-current]");
@@ -105,6 +106,7 @@
       if (!posthog.__loaded) {
         posthog.init(posthogKey, {
           api_host: posthogHost,
+          ui_host: posthogUiHost,
           defaults: "2025-05-24",
           capture_exceptions: true,
           cookieless_mode: "on_reject",

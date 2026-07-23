@@ -54,7 +54,7 @@ Cache-Control = "public, max-age=604800, stale-while-revalidate=86400"
 for = "/*"
 
 [headers.values]
-Content-Security-Policy = "default-src 'self'; base-uri 'self'; connect-src 'self' https://eu.i.posthog.com https://eu-assets.i.posthog.com; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; object-src 'none'; script-src 'self' 'unsafe-inline' https://eu-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; upgrade-insecure-requests"
+Content-Security-Policy = "default-src 'self'; base-uri 'self'; connect-src 'self' https://info.odin-matthias.com; font-src 'self' data:; form-action 'self'; frame-ancestors 'none'; img-src 'self' data: blob:; object-src 'none'; script-src 'self' 'unsafe-inline' https://info.odin-matthias.com; style-src 'self' 'unsafe-inline'; worker-src 'self' blob:; upgrade-insecure-requests"
 Permissions-Policy = "camera=(), geolocation=(), microphone=()"
 Referrer-Policy = "strict-origin-when-cross-origin"
 Strict-Transport-Security = "max-age=31536000"
