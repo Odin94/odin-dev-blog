@@ -12,7 +12,7 @@
     <div class="font-mono text-[9px] uppercase tracking-[0.18em] text-stamp">Privacy</div>
     <h2 id="privacy-consent-title" class="mt-0.5 text-sm font-semibold">Analytics cookies?</h2>
     <p id="privacy-consent-description" class="mt-1 text-xs leading-relaxed text-ink/65">
-      Optional cookies help improve this site. <a
+      Optional cookies enable support chat and help improve this site. <a
         href="/datenschutz/"
         class="text-stamp underline underline-offset-2">Privacy Policy</a
       >.
@@ -53,6 +53,7 @@
   let posthogInitialization: Promise<(typeof import("posthog-js"))["default"] | null> | null =
     null;
   let sessionConsent: "accepted" | "rejected" | null = null;
+  let pendingSupportOpen = false;
 
   const storedConsent = () => {
     try {
@@ -91,6 +92,7 @@
   ) => {
     if (consent === "accepted") {
       if (!posthog.has_opted_in_capturing()) posthog.opt_in_capturing();
+      posthog.conversations.loadIfEnabled();
     } else if (!posthog.has_opted_out_capturing()) {
       posthog.opt_out_capturing();
     }
@@ -149,6 +151,18 @@
       setStatus("Chat is unavailable right now.");
       return;
     }
+
+    // Conversations stores a stable visitor ID so a thread can be resumed. PostHog intentionally
+    // does not load it while persistence consent is pending or denied.
+    if (posthog.get_explicit_consent_status() !== "granted") {
+      pendingSupportOpen = true;
+      setStatus("Accept analytics cookies to open chat.");
+      showConsent();
+      return;
+    }
+
+    pendingSupportOpen = false;
+    posthog.conversations.loadIfEnabled();
 
     // Conversations is loaded from PostHog's project configuration after the core SDK starts.
     for (let attempt = 0; attempt < 50; attempt += 1) {
@@ -217,7 +231,25 @@
     storeConsent(nextConsent);
     if (consentDialog instanceof HTMLElement) consentDialog.hidden = true;
 
-    if (posthogClient?.__loaded) applyConsentToPostHog(posthogClient, nextConsent);
-    else void startPostHog();
+    if (nextConsent === "rejected" && pendingSupportOpen) {
+      pendingSupportOpen = false;
+      const status = document.querySelector("[data-support-status]");
+      if (status instanceof HTMLElement) {
+        status.textContent = "Chat requires cookie consent to remember the conversation.";
+      }
+    }
+
+    const applyChoice = (posthog: (typeof import("posthog-js"))["default"] | null) => {
+      if (!posthog) return;
+
+      applyConsentToPostHog(posthog, nextConsent);
+      if (nextConsent === "accepted" && pendingSupportOpen) {
+        pendingSupportOpen = false;
+        void openSupport();
+      }
+    };
+
+    if (posthogClient?.__loaded) applyChoice(posthogClient);
+    else void startPostHog().then(applyChoice);
   });
 </script>
