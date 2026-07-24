@@ -341,12 +341,12 @@ export function PrivacyPolicyContent() {
         verarbeitet werden.
       </p>
       <p className="my-3">
-        Außerdem stellen wir über PostHog eine Support-Chatfunktion bereit. Wenn Sie diese freiwillig
-        nutzen, verarbeitet PostHog den Inhalt Ihrer Nachricht sowie gegebenenfalls den von Ihnen
-        angegebenen Namen und Ihre E-Mail-Adresse. Eine im lokalen Speicher abgelegte zufällige
-        Sitzungskennung ordnet die Unterhaltung Ihrem Browser zu und ermöglicht es Ihnen, Antworten
-        und frühere Nachrichten wieder aufzurufen. Die Verarbeitung dient ausschließlich der
-        Bearbeitung Ihrer Kontaktanfrage.
+        Außerdem stellen wir über PostHog eine Support-Chatfunktion bereit. Wenn Sie diese
+        freiwillig nutzen, verarbeitet PostHog den Inhalt Ihrer Nachricht sowie gegebenenfalls den
+        von Ihnen angegebenen Namen und Ihre E-Mail-Adresse. Eine im lokalen Speicher abgelegte
+        zufällige Sitzungskennung ordnet die Unterhaltung Ihrem Browser zu und ermöglicht es Ihnen,
+        Antworten und frühere Nachrichten wieder aufzurufen. Die Verarbeitung dient ausschließlich
+        der Bearbeitung Ihrer Kontaktanfrage.
       </p>
       <p className="my-3">
         Nach Ablehnung verwendet PostHog einen datenschutzfreundlichen, serverseitig erzeugten Hash
