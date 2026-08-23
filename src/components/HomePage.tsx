@@ -21,7 +21,7 @@ const projects: Project[] = [
     title: "Progeny",
     system: "Vampire: The Masquerade v5",
     blurb:
-      "A friendly character creator for VtM v5 — pick a clan, spend your dots, print a sheet that doesn't look like a spreadsheet.",
+      "A beginner-friendly character creator and play companion for 'Vampire: The Masquerade' 5th Edition. Several thousand monthly active users.",
     href: "https://progeny.odin-matthias.de",
     image: "/projects/progeny.jpg",
     imageSrcSet:
@@ -33,7 +33,7 @@ const projects: Project[] = [
     title: "Hiveborn",
     system: "Heart: The City Beneath",
     blurb:
-      "A companion tool for Heart — build hivelings, roll delves, and track the slow, gorgeous decay of your delvers.",
+      "A digital character builder, sheet and smart dice roller for 'Heart: The City Beneath'. In stealth mode right now, but it'll be big one day!",
     href: "https://hiveborn.odin-matthias.de",
     image: "/projects/hiveborn.jpg",
     imageSrcSet:
@@ -45,7 +45,7 @@ const projects: Project[] = [
     title: "CozyCrowns",
     system: "Brindlewood Bay",
     blurb:
-      "Mystery-of-the-week helper for Brindlewood Bay: clue tracker, theory builder, and a very judgmental cat.",
+      "A digital character builder, sheet and smart dice roller for 'Brindlewood Bay', cozy vibes included!",
     href: "https://cozycrowns.odin-matthias.de",
     image: "/projects/cozycrowns.jpg",
     imageSrcSet:
